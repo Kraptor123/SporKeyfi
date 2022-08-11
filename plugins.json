@@ -1,0 +1,40 @@
+[
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=fullraces.com&sz=%size%",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Kraptor123/SporKeyfi",
+        "fileSize": 9724,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "kerimmkirac"
+        ],
+        "tvTypes": [
+            "Movie"
+        ],
+        "version": 1,
+        "internalName": "FullRaces",
+        "description": "Formula 1 is one of the most popular and dramatic sports in the world. You can watch Formula One races replays videos online and enjoy every moment of this exciting sports event. We offer to watch F1 Full Races replays FREE in HD",
+        "url": "https://raw.githubusercontent.com/Kraptor123/SporKeyfi/builds/FullRaces.cs3",
+        "name": "FullRaces"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=www.fullreplays.com&sz=%size%",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Kraptor123/SporKeyfi",
+        "fileSize": 10566,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "kerimmkirac"
+        ],
+        "tvTypes": [
+            "Movie"
+        ],
+        "version": 1,
+        "internalName": "FullReplays",
+        "description": "Watch latest football full match replay of Premier League, Champions League, LaLiga, Serie A, Bundesliga, Ligue 1, Europa League, and more...",
+        "url": "https://raw.githubusercontent.com/Kraptor123/SporKeyfi/builds/FullReplays.cs3",
+        "name": "FullReplays"
+    }
+]
