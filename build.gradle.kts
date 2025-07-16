@@ -1,7 +1,5 @@
-import com.android.build.gradle.BaseExtension
 import com.lagradost.cloudstream3.gradle.CloudstreamExtension
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
+import com.android.build.gradle.BaseExtension
 
 buildscript {
     repositories {
@@ -14,7 +12,7 @@ buildscript {
     dependencies {
         classpath("com.android.tools.build:gradle:8.7.3")
         // Cloudstream gradle plugin which makes everything work and builds plugins
-        classpath("com.github.recloudstream:gradle:-SNAPSHOT")
+        classpath("com.github.recloudstream:gradle:master-SNAPSHOT")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.0")
     }
 }
@@ -38,11 +36,13 @@ subprojects {
 
     cloudstream {
         // when running through github workflow, GITHUB_REPOSITORY should contain current repository name
-        setRepo(System.getenv("GITHUB_REPOSITORY") ?: "user/repo")
+        setRepo(System.getenv("GITHUB_REPOSITORY") ?: "https://github.com/Kraptor123/SporKeyfi")
+
+        authors = listOf("kraptor")
     }
 
     android {
-        namespace = "com.example"
+        namespace = "com.kraptor"
 
         defaultConfig {
             minSdk = 21
@@ -55,34 +55,38 @@ subprojects {
             targetCompatibility = JavaVersion.VERSION_1_8
         }
 
-        tasks.withType<KotlinJvmCompile> {
+        tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile> {
             compilerOptions {
-                jvmTarget.set(JvmTarget.JVM_1_8) // Required
+                jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_1_8)
                 freeCompilerArgs.addAll(
-                    "-Xno-call-assertions",
-                    "-Xno-param-assertions",
-                    "-Xno-receiver-assertions"
+                    listOf(
+                        "-Xno-call-assertions",
+                        "-Xno-param-assertions",
+                        "-Xno-receiver-assertions"
+                    )
                 )
             }
         }
     }
 
+
     dependencies {
         val cloudstream by configurations
         val implementation by configurations
 
-        // Stubs for all cloudstream classes
+        // Stubs for all Cloudstream classes
         cloudstream("com.lagradost:cloudstream3:pre-release")
 
-        // These dependencies can include any of those which are added by the app,
-        // but you don't need to include any of them if you don't need them.
-        // https://github.com/recloudstream/cloudstream/blob/master/app/build.gradle.kts
-        implementation(kotlin("stdlib")) // Adds Standard Kotlin Features
-        implementation("com.github.Blatzar:NiceHttp:0.4.11") // HTTP Lib
-        implementation("org.jsoup:jsoup:1.18.3") // HTML Parser
-        // IMPORTANT: Do not bump Jackson above 2.13.1, as newer versions will
-        // break compatibility on older Android devices.
-        implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.1") // JSON Parser
+        // these dependencies can include any of those which are added by the app,
+        // but you dont need to include any of them if you dont need them
+        // https://github.com/recloudstream/cloudstream/blob/master/app/build.gradle
+        implementation(kotlin("stdlib"))                                              // Kotlin'in temel kütüphanesi
+        implementation("com.github.Blatzar:NiceHttp:0.4.13")                          // HTTP kütüphanesi
+        implementation("org.jsoup:jsoup:1.19.1")                                      // HTML ayrıştırıcı
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.1")   // Kotlin için Jackson JSON kütüphanesi
+        implementation("com.fasterxml.jackson.core:jackson-databind:2.16.0")          // JSON-nesne dönüştürme kütüphanesi
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.1")      // Kotlin için asenkron işlemler
+        implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
     }
 }
 

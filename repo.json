@@ -1,0 +1,8 @@
+{
+  "name": "SporKeyfi",
+  "description": "Sporla alakalı şeyler",
+  "manifestVersion": 1,
+  "pluginLists": [
+    "https://raw.githubusercontent.com/Kraptor123/SporKeyfi/refs/heads/builds/plugins.json"
+  ]
+}
